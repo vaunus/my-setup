@@ -3,43 +3,42 @@
 These are my notes for setting up a new MacBook to my preference.
 
 ## Setup terminal
-Download iTerm from https://iterm2.com/downloads/stable/latest
+Download [iTerm2](https://iterm2.com/downloads/stable/latest).
 
-Install OhMyZsh
+Install OhMyZsh:
 ```
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Install Menlo for Powerline font
-https://github.com/abertsch/Menlo-for-Powerline
+Install [Menlo for Powerline font](https://github.com/abertsch/Menlo-for-Powerline).
 
-Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.json)
+Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.json).
 
-Copy [.zshrc](/.zshrc) and other dot files to `~`
+Copy [.zshrc](/.zshrc) and other dot files to home directory.
 
 ## Install Homebrew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-Check everything is ok
+Check everything is ok:
 ```
 brew doctor
 ```
-Install some `brew` packages
+Install some `brew` packages:
 ```
 brew install git yarn
 ```
 
 ## Install Node
-Bootstrap the `n` version manager
+Bootstrap the `n` version manager:
 ```
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
 ```
-Then use that to install `node`, `npm` and a real install of `n`
+Then use that to install `node`, `npm` and a real install of `n`:
 ```
 bash n lts && rm n && npm install -g n
 ```
-Install `pnpm`
+Install `pnpm`:
 ```
 curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 ```
@@ -48,6 +47,7 @@ curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 ```
 brew install pyenv
 ```
+Update `pip`:
 ```
 pip install pip
 ```
@@ -60,96 +60,76 @@ pip install ansible aws-sam-cli awscli onelogin-aws-cli
 ```
 brew install mariadb
 ```
-Start the service
+Start the `mariadb` service:
 ```
 brew services start mariadb
 ```
-Use the setup script to set sensible defaults
+Use the setup script to set sensible defaults:
 ```
 sudo mysql_secure_installation
 ```
 
 ## Install JetBrains Mono font
-Install from https://www.jetbrains.com/lp/mono
+A developer-friendly font. 
+[Download](https://www.jetbrains.com/lp/mono) and then install the regular ttf.
 
 ## Setup apps
 ### 1Password (paid)
 A password manager.
-
-https://1password.com
+[Download](https://1password.com)
 
 ### CleanShot X (paid)
 A screenshot/video capture tool.
-
-Install from https://cleanshot.com
+[Download](https://cleanshot.com)
 
 ### Collective (paid)
 A clipboard history manager.
+[Download](http://www.generation-loss.com/collective)
 
-Install from http://www.generation-loss.com/collective
-
-### Colorsnapper (paid)
+### ColorSnapper (paid)
 A system-wide colour picker.
-
-Install from https://colorsnapper.com
-
-OR OpenSource alternative [Pika](https://github.com/superhighfives/pika)
+[Download](https://colorsnapper.com) OR use open source alternative [Pika](https://github.com/superhighfives/pika).
 
 ### Insomnia
 A GraphQL and REST API client.
-
-Install from https://insomnia.rest
-
-### Keka
-An archiver that supports lots of formats.
-
-Install from https://www.keka.io
-
-### Obsidian
-A markdown note taker.
-
-Install from https://obsidian.md
-
-### PixelSnap 2 (paid)
-A contents-of-screen measurer.
-
-Install from https://getpixelsnap.com
-
-### Rectangle
-A window layout manager.
-
-Install from https://rectangleapp.com
-
-###Sequel Ace
-A MySQL client.
-
-Install from https://github.com/Sequel-Ace/Sequel-Ace.
-
-Import a dark theme for query window settings [SequelAce-theme.spTheme](/SequelAce-theme.spTheme)
-
-### Slack
-A team chat app.
-
-Install from https://slack.com/downloads
-
-### Sourcetree
-A Git GUI.
-
-Install from https://www.sourcetreeapp.com
-
-### Visual Studio Code
-An IDE.
-
-Install from https://code.visualstudio.com
-
-Turn on Settings Sync and sign in with Github.
+[Download](https://insomnia.rest)
 
 ### iStat Menus.app (paid)
 A status bar system monitor.
+[Download]( https://bjango.com/mac/istatmenus)
 
-Install from https://bjango.com/mac/istatmenus
+### Keka
+An archiver that supports lots of formats.
+[Download]( https://www.keka.io)
+
+### Obsidian
+A markdown note taker.
+[Download]( https://obsidian.md)
+
+### PixelSnap 2 (paid)
+A contents-of-screen measurer.
+[Download]( https://getpixelsnap.com)
+
+### Rectangle
+A window layout manager.
+[Download]( https://rectangleapp.com)
+
+### Sequel Ace
+A MySQL client.
+[Download]( https://github.com/Sequel-Ace/Sequel-Ace) and  import my dark theme for the query window [SequelAce-theme.spTheme](/SequelAce-theme.spTheme).
+
+### Slack
+A team chat app.
+[Download]( https://slack.com/downloads)
+
+### Sourcetree
+A Git GUI.
+[Download]( https://www.sourcetreeapp.com)
+
+### Visual Studio Code
+An IDE.
+[Download]( https://code.visualstudio.com) and turn on Settings Sync and sign in with Github.
 
 ### Zoom
 A video meetings app.
-
-Install from https://zoom.us/download
+[Download](https://zoom.us/download)
