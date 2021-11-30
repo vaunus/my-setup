@@ -1,4 +1,4 @@
-# Dot Files and MacOS Setup
+# My Setup
 
 These are my notes for setting up a new MacBook to my preference.
 
