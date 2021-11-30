@@ -10,9 +10,6 @@ source $ZSH/oh-my-zsh.sh
 # Path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 
-# Environment secrets
-source $HOME/.zsh_env_secrets
-
 # Terminal setup
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
@@ -81,3 +78,6 @@ export PATH=$N_PREFIX/bin:$PATH
 # Python
 eval "$(pyenv init -)"
 eval "$(pyenv init --path)"
+
+# ZSH secrets
+source $HOME/.zsh_secrets
