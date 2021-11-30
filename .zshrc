@@ -33,25 +33,26 @@ alias wget="curl -O"
 alias ls="ls -Ga"
 alias ll="ls -l -h"
 alias vi="vim"
-alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
-alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+alias locate="mdfind"
 alias empty='cat /dev/null >'
+alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
+alias pnx='pnpm run nx --'
+alias cdw="cd ~/Workspaces"
 alias ip="curl -s -X GET https://checkip.amazonaws.com | sed s/\r\n// | pbcopy && pbpaste && echo '\nIP copied to clipboard!'"
-alias cdm="cd ~/Documents/Workspaces/Node/mega-mentor"
-alias cdi="cd ~/Documents/Workspaces/Node/infra-mentor"
 alias flushdns="sudo killall -HUP mDNSResponder"
+alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
 
+# Git aliases
+alias gco='git checkout'
+alias gst='git status'
+alias gfp='git fetch && git pull'
 alias gbc='f() { git branch $1 && git checkout $1 }; f'
 alias gbd='git branch -d'
-alias gcl='git clean -f -i'
-alias gco='git checkout'
-alias gfp='git fetch && git pull'
-alias gmd='git merge --no-commit develop'
 alias grh='git reset --hard'
-alias gst='git status'
-alias gstash='git add "*" && git stash save $1'
+alias gcl='git clean -f -i'
+alias gmd='git merge --no-commit develop'
+alias gpush='git add "*" && git stash save $1'
 alias gpop='git stash pop'
-alias pnx='pnpm run nx --'
 
 # Alias functions
 kn() {
@@ -61,6 +62,10 @@ kn() {
     echo "Killed node pid $x"
   done 
 }
+
+# Fast key repeat
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -int 1
 
 # VSCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
