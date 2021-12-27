@@ -69,6 +69,19 @@ Use the setup script to set sensible defaults:
 sudo mysql_secure_installation
 ```
 
+## Install Ansible 2.9
+```
+pip install ansible==2.9.27
+```
+
+## Install Terraform
+```
+brew tap hashicorp/tap
+```
+```
+brew install hashicorp/tap/terraform
+```
+
 ## Install JetBrains Mono font
 A developer-friendly font. 
 [Download](https://www.jetbrains.com/lp/mono) and then install the regular ttf.
