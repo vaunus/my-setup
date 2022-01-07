@@ -41,6 +41,7 @@ alias cdw="cd ~/Workspaces"
 alias ip="curl -s -X GET https://checkip.amazonaws.com | sed s/\r\n// | pbcopy && pbpaste && echo '\nIP copied to clipboard!'"
 alias flushdns="sudo killall -HUP mDNSResponder"
 alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+alias emptymongo="mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'"
 
 # Git aliases
 alias gco='git checkout'
@@ -55,6 +56,15 @@ alias gpush='git add "*" && git stash save $1'
 alias gpop='git stash pop'
 
 # Alias functions
+gdiff() {
+  if [[ "$#" -eq 2 ]]
+  then
+    git log --oneline $(git merge-base $1 $2)..$2 | cut -d\  -f2-
+  else
+    echo "Usage: gdiff base-branch target-branch"
+  fi
+}
+
 kn() {
   for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
   do
