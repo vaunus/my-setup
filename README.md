@@ -76,10 +76,11 @@ pip install ansible==2.9.27
 
 ## Install Terraform
 ```
-brew tap hashicorp/tap
+brew install tfenv
 ```
 ```
-brew install hashicorp/tap/terraform
+tfenv install <version>
+tfenv use <version>
 ```
 
 ## Install JetBrains Mono font
