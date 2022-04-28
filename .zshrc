@@ -59,7 +59,7 @@ alias gpop='git stash pop'
 gdiff() {
   if [[ "$#" -eq 2 ]]
   then
-    git log --oneline $(git merge-base $1 $2)..$2 | cut -d\  -f2-
+    git log --oneline $(git merge-base $1 $2)..$2 | cut -d\  -f2- | tail -r | sed -e 's/^/- /'
   else
     echo "Usage: gdiff base-branch target-branch"
   fi
