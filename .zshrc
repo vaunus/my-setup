@@ -1,5 +1,8 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
 # ZSH setup 
-export ZSH=/Users/vreid/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 
@@ -36,7 +39,6 @@ alias vi="vim"
 alias locate="mdfind"
 alias empty='cat /dev/null >'
 alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
-alias pnx='pnpm run nx --'
 alias cdw="cd ~/Workspaces"
 alias ip="curl -s -X GET https://checkip.amazonaws.com | sed s/\r\n// | pbcopy && pbpaste && echo '\nIP copied to clipboard!'"
 alias flushdns="sudo killall -HUP mDNSResponder"
@@ -82,13 +84,24 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 # Node
 export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
+export PATH=./node_modules/.bin:$N_PREFIX/bin:$PATH
+
+# Pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # PHP
-#export PATH="$PATH:/usr/local/opt/php@7.0/bin"
+export PATH=/usr/local/opt/php@7.4/bin:$PATH
+
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
 
 # Ansible
 #export PATH="/usr/local/opt/ansible@2.8/bin:$PATH"
+
+# Terraform
+# Fix for issue https://github.com/hashicorp/terraform-provider-aws/issues/20274#issuecomment-996795241
+export GODEBUG=asyncpreemptoff=1
 
 # Python
 eval "$(pyenv init -)"
@@ -96,3 +109,6 @@ eval "$(pyenv init --path)"
 
 # ZSH secrets
 source $HOME/.zsh_secrets
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
