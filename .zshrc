@@ -44,13 +44,16 @@ alias ip="curl -s -X GET https://checkip.amazonaws.com | sed s/\r\n// | pbcopy &
 alias flushdns="sudo killall -HUP mDNSResponder"
 alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
 alias emptymongo="mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'"
+alias peerdeps='f() { npm info $1 peerDependencies }; f'
 
 # Git aliases
 alias gco='git checkout'
 alias gst='git status'
-alias gfp='git fetch && git pull'
+alias gfp='git fetch --prune origin && git pull'
 alias gbc='f() { git branch $1 && git checkout $1 }; f'
 alias gbd='git branch -d'
+alias gbs='ggb' # npm git-branch-selector
+alias gbl='git branch --list --color=always | cat'
 alias grh='git reset --hard'
 alias gcl='git clean -f -i'
 alias gmd='git merge --no-commit develop'
@@ -68,7 +71,7 @@ gdiff() {
 }
 
 kn() {
-  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
+  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
   do
     kill -9 $x
     echo "Killed node pid $x"
@@ -79,12 +82,15 @@ kn() {
 defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -int 1
 
+# Disable DS_Store files
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true 
+
 # VSCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Node
 export N_PREFIX=$HOME/.n
-export PATH=./node_modules/.bin:$N_PREFIX/bin:$PATH
+export PATH=./node_modules/.bin:../node_modules/.bin:../../node_modules/.bin:../../../node_modules/.bin:../../../../node_modules/.bin:$N_PREFIX/bin:$PATH
 
 # Pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
@@ -105,7 +111,7 @@ export GODEBUG=asyncpreemptoff=1
 
 # Python
 eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
+eval "$(pyenv init --path)" 
 
 # ZSH secrets
 source $HOME/.zsh_secrets
