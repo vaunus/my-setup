@@ -28,6 +28,9 @@ function check_last_exit_code() {
 }
 RPROMPT='$(check_last_exit_code)'
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Aliases
 alias more=less
 alias reload="source ~/.zshrc"
@@ -36,6 +39,8 @@ alias wget="curl -O"
 alias ls="ls -Ga"
 alias ll="ls -l -h"
 alias vi="vim"
+alias python="python3"
+alias pip="pip3"
 alias locate="mdfind"
 alias empty='cat /dev/null >'
 alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
@@ -102,9 +107,6 @@ export PATH=/usr/local/opt/php@7.4/bin:$PATH
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 
-# Ansible
-#export PATH="/usr/local/opt/ansible@2.8/bin:$PATH"
-
 # Terraform
 # Fix for issue https://github.com/hashicorp/terraform-provider-aws/issues/20274#issuecomment-996795241
 export GODEBUG=asyncpreemptoff=1
@@ -112,9 +114,7 @@ export GODEBUG=asyncpreemptoff=1
 # Python
 eval "$(pyenv init -)"
 eval "$(pyenv init --path)" 
+export PATH=$PATH:~/Library/Python/3.9/bin
 
 # ZSH secrets
 source $HOME/.zsh_secrets
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

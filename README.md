@@ -3,9 +3,11 @@
 These are my notes for setting up a new MacBook to my preference.
 
 ## Setup terminal
+
 Download [iTerm2](https://iterm2.com/downloads/stable/latest).
 
 Install OhMyZsh:
+
 ```
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
@@ -17,133 +19,176 @@ Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.jso
 Copy [.zshrc](/.zshrc) and other dot files to home directory.
 
 ## Install Homebrew
+
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
 Check everything is ok:
+
 ```
 brew doctor
 ```
+
 Install some `brew` packages:
+
 ```
-brew install git yarn
+brew install aws/tap/aws-sam-cli git telnet yarn
 ```
 
 ## Install Node
+
 Bootstrap the `n` version manager:
+
 ```
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n
 ```
+
 Then use that to install `node`, `npm` and a real install of `n`:
+
 ```
 bash n lts && rm n && npm install -g n
 ```
+
 Install `pnpm`:
+
 ```
-curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+```
+
+And add some global packages:
+
+```
+pnpm add -g git-branch-selector node-gyp
 ```
 
 ## Install Python
+
 ```
 brew install pyenv
 ```
+
 Update `pip`:
+
 ```
-pip install pip
-```
-Install some `pip` packages
-```
-pip install ansible aws-sam-cli awscli onelogin-aws-cli
+python3 -m pip install --upgrade pip
 ```
 
-## Install MySQL (mariadb)
+## Install AWS Cli v2
+
 ```
-brew install mariadb
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
 ```
-Start the `mariadb` service:
+
+## Install MySQL 8.0
+
 ```
-brew services start mariadb
+brew install mysql
 ```
+
+Start the `mysql` service:
+
+```
+brew services start mysql
+```
+
 Use the setup script to set sensible defaults:
+
 ```
-sudo mysql_secure_installation
+mysql_secure_installation
 ```
 
 ## Install Ansible 2.9
+
 ```
 pip install ansible==2.9.27
 ```
 
 ## Install Terraform
+
 ```
 brew install tfenv
 ```
+
 ```
 tfenv install <version>
 tfenv use <version>
 ```
 
 ## Install JetBrains Mono font
-A developer-friendly font. 
+
+A developer-friendly font.
 [Download](https://www.jetbrains.com/lp/mono) and then install the regular ttf.
 
 ## Setup apps
+
 ### 1Password (paid)
+
 A password manager.
 [Download](https://1password.com)
 
 ### CleanShot X (paid)
+
 A screenshot/video capture tool.
 [Download](https://cleanshot.com)
 
 ### Collective (paid)
+
 A clipboard history manager.
 [Download](http://www.generation-loss.com/collective)
 
 ### ColorSnapper (paid)
+
 A system-wide colour picker.
 [Download](https://colorsnapper.com) OR use open source alternative [Pika](https://github.com/superhighfives/pika).
 
-### Insomnia
-A GraphQL and REST API client.
-[Download](https://insomnia.rest)
-
 ### iStat Menus.app (paid)
+
 A status bar system monitor.
-[Download]( https://bjango.com/mac/istatmenus)
+[Download](https://bjango.com/mac/istatmenus)
 
 ### Keka
+
 An archiver that supports lots of formats.
-[Download]( https://www.keka.io)
+[Download](https://www.keka.io)
 
 ### Obsidian
+
 A markdown note taker.
-[Download]( https://obsidian.md)
+[Download](https://obsidian.md)
 
 ### PixelSnap 2 (paid)
+
 A contents-of-screen measurer.
-[Download]( https://getpixelsnap.com)
+[Download](https://getpixelsnap.com)
+
+### Postman
+
+A GraphQL and REST API client.
+[Download](https://www.postman.com/downloads/)
 
 ### Rectangle
+
 A window layout manager.
-[Download]( https://rectangleapp.com)
+[Download](https://rectangleapp.com)
 
 ### Sequel Ace
+
 A MySQL client.
-[Download]( https://github.com/Sequel-Ace/Sequel-Ace) and  import my dark theme for the query window [SequelAce-theme.spTheme](/SequelAce-theme.spTheme).
+[Download](https://github.com/Sequel-Ace/Sequel-Ace) and import my dark theme for the query window [SequelAce-theme.spTheme](/SequelAce-theme.spTheme).
 
 ### Slack
+
 A team chat app.
-[Download]( https://slack.com/downloads)
+[Download](https://slack.com/downloads)
 
 ### Sourcetree
+
 A Git GUI.
-[Download]( https://www.sourcetreeapp.com)
+[Download](https://www.sourcetreeapp.com)
 
 ### Visual Studio Code
-An IDE.
-[Download]( https://code.visualstudio.com) and turn on Settings Sync and sign in with Github.
 
-### Zoom
-A video meetings app.
-[Download](https://zoom.us/download)
+An IDE.
+[Download](https://code.visualstudio.com) and turn on Settings Sync and sign in with Github.
