@@ -18,6 +18,21 @@ Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.jso
 
 Copy [.zshrc](/.zshrc) and other dot files to home directory.
 
+Setup handy key shortcuts in iTerm preferences:
+
+`⌘ ←` 'Jump left to beginning of line' and `⌘ →` 'Jump right to end of line':
+
+```
+Set ⌘ ← to Hex code 0x01
+Set ⌘ → to Hex code 0x05
+```
+
+`⌘ z` undo:
+
+```
+Hex code 0x1f
+```
+
 ## Install Homebrew
 
 ```
@@ -115,6 +130,26 @@ brew install tfenv
 tfenv install <version>
 tfenv use <version>
 ```
+
+## Install nginx
+
+```
+brew install nginx
+```
+
+Setup configuration files at `$HOMEBREW_PREFIX/etc/nginx`
+
+## Install PHP 7.4
+
+Yes, I know it's old and unsecure!
+
+```
+brew tap shivammathur/php
+brew install shivammathur/php/php@7.4
+brew link php@7.4
+```
+
+Setup php.ini at `$HOMEBREW_PREFIX/etc/php/7.4/`
 
 ## Install JetBrains Mono font
 
