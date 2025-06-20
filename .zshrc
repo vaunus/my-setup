@@ -1,12 +1,9 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # ZSH setup 
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 
-DEFAULT_USER=vreid
+DEFAULT_USER=vaunus
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,8 +44,6 @@ alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
 alias cdw="cd ~/Workspaces"
 alias ip="curl -s -X GET https://checkip.amazonaws.com | tr -d \\\n | pbcopy && pbpaste && echo '\n\nIP copied to clipboard!'"
 alias flushdns="sudo killall -HUP mDNSResponder"
-alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
-alias emptymongo="mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'"
 alias peerdeps='f() { npm info $1 peerDependencies }; f'
 
 # Git aliases
@@ -62,7 +57,6 @@ alias gbs='ggb' # npm git-branch-selector
 alias gbl='git branch --list --color=always | cat'
 alias grh='git reset --hard'
 alias gcl='git clean -f -i'
-alias gmd='git merge --no-commit develop'
 alias gpush='git add "*" && git stash save $1'
 alias gpop='git stash pop'
 # recover stashes you've accidentally removed 
@@ -79,7 +73,7 @@ gdiff() {
 }
 
 kn() {
-  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
+  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Cursor" | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v "Discord" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
   do
     kill -9 $x
     echo "Killed node pid $x"
@@ -93,8 +87,8 @@ defaults write -g KeyRepeat -int 1
 # Disable DS_Store files
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true 
 
-# VSCode
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# Cursor
+export PATH="$PATH:/Applications/Cursor.app/Contents/Resources/app/bin"
 
 # Node
 export N_PREFIX=$HOME/.n
@@ -115,9 +109,10 @@ export PATH=$HOME/.cargo/bin:$PATH
 export GODEBUG=asyncpreemptoff=1
 
 # Python
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)" 
-export PATH=$PATH:~/Library/Python/3.9/bin
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
 
 # ZSH secrets
 source $HOME/.zsh_secrets
@@ -130,3 +125,4 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # MySQL
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
