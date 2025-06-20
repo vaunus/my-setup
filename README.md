@@ -14,23 +14,25 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 Install [Menlo for Powerline font](https://github.com/abertsch/Menlo-for-Powerline).
 
-Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.json).
+In iTerm preferences:
+
+- Replace the default profile in settings with [iTerm-theme.json](/iTerm-theme.json)
+- Setup handy key shortcuts. Import [iTerm-shortcuts.itermkeymap](./iTerm-shortcuts.itermkeymap)
 
 Copy [.zshrc](/.zshrc) and other dot files to home directory.
 
-Setup handy key shortcuts in iTerm preferences:
-
-`⌘ ←` 'Jump left to beginning of line' and `⌘ →` 'Jump right to end of line':
+**Enable Touch ID Authentication for sudo:**
 
 ```
-Set ⌘ ← to Hex code 0x01
-Set ⌘ → to Hex code 0x05
+sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+
+sudo vim /etc/pam.d/sudo_local
 ```
 
-`⌘ z` undo:
+Uncomment the following line:
 
 ```
-Hex code 0x1f
+#auth       sufficient     pam_tid.so
 ```
 
 ## Install Homebrew
