@@ -45,7 +45,7 @@ alias locate="mdfind"
 alias empty='cat /dev/null >'
 alias rmn="mv node_modules/ .deleting/ && rm -rf .deleting/ &"
 alias cdw="cd ~/Workspaces"
-alias ip="curl -s -X GET https://checkip.amazonaws.com | sed s/\r\n// | pbcopy && pbpaste && echo '\nIP copied to clipboard!'"
+alias ip="curl -s -X GET https://checkip.amazonaws.com | tr -d \\\n | pbcopy && pbpaste && echo '\n\nIP copied to clipboard!'"
 alias flushdns="sudo killall -HUP mDNSResponder"
 alias fixmouse="cd ~/Library/Preferences && rm com.apple.AppleMultitouchMouse.plist && rm com.apple.driver.AppleBluetoothMultitouch.mouse.plist && osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
 alias emptymongo="mongo --quiet --eval 'db.getMongo().getDBNames().forEach(function(i){db.getSiblingDB(i).dropDatabase()})'"
@@ -57,6 +57,7 @@ alias gst='git status'
 alias gfp='git fetch --prune origin && git pull'
 alias gbc='f() { git branch $1 && git checkout $1 }; f'
 alias gbd='git branch -d'
+alias gbr='git branch -m $1'
 alias gbs='ggb' # npm git-branch-selector
 alias gbl='git branch --list --color=always | cat'
 alias grh='git reset --hard'
@@ -64,6 +65,8 @@ alias gcl='git clean -f -i'
 alias gmd='git merge --no-commit develop'
 alias gpush='git add "*" && git stash save $1'
 alias gpop='git stash pop'
+# recover stashes you've accidentally removed 
+alias grecover='git fsck --unreachable | grep commit | cut -d" " -f3 | xargs git log --merges --no-walk --grep=WIP'
 
 # Alias functions
 gdiff() {
@@ -102,7 +105,7 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # PHP
-export PATH=/usr/local/opt/php@7.4/bin:$PATH
+export PATH=/opt/homebrew/opt/php@7.4/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
@@ -118,3 +121,12 @@ export PATH=$PATH:~/Library/Python/3.9/bin
 
 # ZSH secrets
 source $HOME/.zsh_secrets
+
+# bun completions
+[ -s "/Users/vreid/.bun/_bun" ] && source "/Users/vreid/.bun/_bun"
+
+# OpenJDK
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# MySQL
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
