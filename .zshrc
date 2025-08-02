@@ -62,7 +62,6 @@ alias gbs='ggb' # npm git-branch-selector
 alias gbl='git branch --list --color=always | cat'
 alias grh='git reset --hard'
 alias gcl='git clean -f -i'
-alias gmd='git merge --no-commit develop'
 alias gpush='git add "*" && git stash save $1'
 alias gpop='git stash pop'
 # recover stashes you've accidentally removed 
@@ -79,7 +78,7 @@ gdiff() {
 }
 
 kn() {
-  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
+  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v "Discord" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
   do
     kill -9 $x
     echo "Killed node pid $x"
@@ -117,7 +116,7 @@ export GODEBUG=asyncpreemptoff=1
 # Python
 eval "$(pyenv init -)"
 eval "$(pyenv init --path)" 
-export PATH=$PATH:~/Library/Python/3.9/bin
+export PATH=$PATH:$HOME/Library/Python/3.9/bin
 
 # ZSH secrets
 source $HOME/.zsh_secrets
