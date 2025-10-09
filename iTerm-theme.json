@@ -24,7 +24,7 @@
   "Right Option Key Sends" : 0,
   "Character Encoding" : 4,
   "Selection Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
@@ -328,7 +328,7 @@
   "Ansi 9 Color" : {
     "Red Component" : 0.79607843137254897,
     "Color Space" : "sRGB",
-    "Blue Component" : 0.086274509803921567,
+    "Blue Component" : 0.086274509803921581,
     "Green Component" : 0.29411764705882354
   },
   "Use Bold Font" : true,
@@ -343,7 +343,7 @@
   "Allow Title Reporting" : false,
   "Use Bright Bold" : true,
   "Cursor Text Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
@@ -358,7 +358,7 @@
   "Disable Smcup Rmcup" : false,
   "Name" : "Default",
   "Blinking Cursor" : false,
-  "Guid" : "C8FDC79B-51B7-4A4F-9E36-7E36BFB39763",
+  "Guid" : "8F51D0FA-4611-4D99-8FD3-554C29CBB375",
   "Ansi 1 Color" : {
     "Red Component" : 0.86274509803921573,
     "Color Space" : "sRGB",
@@ -395,7 +395,7 @@
   "Ambiguous Double Width" : false,
   "Blur Radius" : 2,
   "Ansi 0 Color" : {
-    "Red Component" : 0.027450980392156862,
+    "Red Component" : 0.027450980392156866,
     "Color Space" : "sRGB",
     "Blue Component" : 0.25882352941176473,
     "Green Component" : 0.21176470588235294
@@ -416,7 +416,7 @@
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 0,
   "Blink Allowed" : false,
-  "Minimum Contrast" : 0,
+  "Minimum Contrast" : 0.20000000000000004,
   "Ansi 15 Color" : {
     "Red Component" : 0.99215686274509807,
     "Color Space" : "sRGB",
