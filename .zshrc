@@ -83,16 +83,44 @@ kn() {
   done 
 }
 
-# connect mouse and keyboard
-pair() {
-  blueutil --unpair $BLUETOOTH_KB && blueutil --pair $BLUETOOTH_KB
-  blueutil --unpair $BLUETOOTH_MOUSE && blueutil --pair $BLUETOOTH_MOUSE
-}
-
 # disconnect mouse and keyboard
 unpair() {
-  blueutil --unpair $BLUETOOTH_KB
-  blueutil --unpair $BLUETOOTH_MOUSE
+  setopt localoptions nomonitor
+  blueutil --unpair $BLUETOOTH_KB && echo "keyboard disconnected ✅"
+  blueutil --unpair $BLUETOOTH_MOUSE && echo "mouse disconnected ✅"
+}
+
+# Enable env_parallel so GNU parallel can see shell functions
+source /opt/homebrew/bin/env_parallel.zsh
+
+_pair_device() {
+  local name=$1 mac=$2
+  local max_tries=10 tries=0
+
+  if [[ $(blueutil --is-connected "$mac" 2>/dev/null) == "1" ]]; then
+    echo "$name is already connected ✅"
+    return 0
+  fi
+
+  while (( tries < max_tries )); do
+    if blueutil --inquiry 1 2>/dev/null | grep -qi "$mac"; then
+      echo "found $name, pairing..."
+      blueutil --pair "$mac" && sleep 2 && blueutil --connect "$mac" >/dev/null
+      echo "paired with $name ✅"
+      return 0
+    fi
+    (( tries++ ))
+  done
+  echo "failed to pair with $name ❌"
+  return 1
+}
+
+pair-keyboard() { _pair_device keyboard "$BLUETOOTH_KB" }
+pair-mouse()    { _pair_device mouse    "$BLUETOOTH_MOUSE" }
+
+# connect mouse and keyboard in parallel
+pair() {
+  env_parallel --line-buffer ::: pair-keyboard pair-mouse
 }
 
 # Fast key repeat
@@ -125,8 +153,12 @@ export GODEBUG=asyncpreemptoff=1
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
+
+# ZSH secrets
+source $HOME/.zsh_secrets
 
 # bun completions
 [ -s "/Users/vreid/.bun/_bun" ] && source "/Users/vreid/.bun/_bun"
@@ -136,3 +168,6 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # MySQL
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+
+# LM Studio
+export PATH="$PATH:/Users/$DEFAULT_USER/.lmstudio/bin"
