@@ -13,6 +13,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 # Terminal setup
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
+# ZSH secrets
+source $HOME/.zsh_secrets
+
 function check_last_exit_code() {
   local LAST_EXIT_CODE=$?
   if [[ $LAST_EXIT_CODE -ne 0 ]]; then
@@ -73,11 +76,23 @@ gdiff() {
 }
 
 kn() {
-  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Cursor" | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v "Discord" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
+  for x in `ps -a | grep node | grep -v extensions | grep -v Adobe | grep -v "Visual Studio" | grep -v "Obsidian" | grep -v "Discord" | grep -v grep | awk '{print $2}' | tr '\n' ' '`
   do
     kill -9 $x
     echo "Killed node pid $x"
   done 
+}
+
+# connect mouse and keyboard
+pair() {
+  blueutil --unpair $BLUETOOTH_KB && blueutil --pair $BLUETOOTH_KB
+  blueutil --unpair $BLUETOOTH_MOUSE && blueutil --pair $BLUETOOTH_MOUSE
+}
+
+# disconnect mouse and keyboard
+unpair() {
+  blueutil --unpair $BLUETOOTH_KB
+  blueutil --unpair $BLUETOOTH_MOUSE
 }
 
 # Fast key repeat
@@ -87,8 +102,8 @@ defaults write -g KeyRepeat -int 1
 # Disable DS_Store files
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true 
 
-# Cursor
-export PATH="$PATH:/Applications/Cursor.app/Contents/Resources/app/bin"
+# VSCode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Node
 export N_PREFIX=$HOME/.n
@@ -110,12 +125,8 @@ export GODEBUG=asyncpreemptoff=1
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-export PATH=$HOME/Library/Python/3.9/bin:$PATH
-
-# ZSH secrets
-source $HOME/.zsh_secrets
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # bun completions
 [ -s "/Users/vreid/.bun/_bun" ] && source "/Users/vreid/.bun/_bun"
@@ -125,4 +136,3 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # MySQL
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
