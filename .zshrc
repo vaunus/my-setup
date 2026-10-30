@@ -172,7 +172,7 @@ source $HOME/.zsh_secrets
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # MySQL
-export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
