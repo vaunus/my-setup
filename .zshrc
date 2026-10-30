@@ -30,6 +30,7 @@ RPROMPT='$(check_last_exit_code)'
 
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Aliases
 alias more=less
@@ -48,6 +49,7 @@ alias cdw="cd ~/Workspaces"
 alias ip="curl -s -X GET https://checkip.amazonaws.com | tr -d \\\n | pbcopy && pbpaste && echo '\n\nIP copied to clipboard!'"
 alias flushdns="sudo killall -HUP mDNSResponder"
 alias peerdeps='f() { npm info $1 peerDependencies }; f'
+alias keepalive=caffeinate
 
 # Git aliases
 alias gco='git checkout'
@@ -157,6 +159,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 export PATH=$HOME/Library/Python/3.9/bin:$PATH
 
+# uv
+. "$HOME/.local/bin/env"
+
 # ZSH secrets
 source $HOME/.zsh_secrets
 
@@ -167,7 +172,8 @@ source $HOME/.zsh_secrets
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # MySQL
-export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 
-# LM Studio
-export PATH="$PATH:/Users/$DEFAULT_USER/.lmstudio/bin"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
