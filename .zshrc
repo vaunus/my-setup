@@ -2,10 +2,15 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
+DEFAULT_USER=${HOME:t}
 
-DEFAULT_USER=vaunus
+export LANG=en_GB.UTF-8
+
+# ZSH secrets
+source $HOME/.zsh_secrets
 
 source $ZSH/oh-my-zsh.sh
+# end ZSH setup
 
 # Path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
@@ -140,7 +145,7 @@ export N_PREFIX=$HOME/.n
 export PATH=./node_modules/.bin:../node_modules/.bin:../../node_modules/.bin:../../../node_modules/.bin:../../../../node_modules/.bin:$N_PREFIX/bin:$PATH
 
 # Pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm/bin"
 export PATH="$PNPM_HOME:$PATH"
 
 # PHP
@@ -162,9 +167,6 @@ export PATH=$HOME/Library/Python/3.9/bin:$PATH
 # uv
 . "$HOME/.local/bin/env"
 
-# ZSH secrets
-source $HOME/.zsh_secrets
-
 # bun completions
 [ -s "/Users/vreid/.bun/_bun" ] && source "/Users/vreid/.bun/_bun"
 
@@ -177,3 +179,11 @@ export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
